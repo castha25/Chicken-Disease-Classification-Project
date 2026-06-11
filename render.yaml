@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: chicken-disease
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: LANG
+        value: en_US.UTF-8
+      - key: LC_ALL
+        value: en_US.UTF-8

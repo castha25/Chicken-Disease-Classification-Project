@@ -82,13 +82,13 @@ jobs:
         run: |
           docker pull ${{ secrets.AWS_ECR_LOGIN_URI }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
-      - name: Stop and remove existing container  # ✅ uncommented & fixed
-        run: |
-          docker rm -f cnncls || true
+      # ✅ Fixed
+      - name: Stop and remove existing container
+        run: docker rm -f chicken || true
 
       - name: Run Docker container
         run: |
-          docker run -d -p 8080:8080 --name=cnncls \
+            docker run -d -p 8080:8080 --name=chicken \
             -e "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" \
             -e "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
             -e "AWS_REGION=${{ secrets.AWS_REGION }}" \
